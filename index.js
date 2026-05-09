@@ -4,6 +4,14 @@ let tempText = ["Hi, I'm Abdullah, a", "Frontend", "website developer."];
 window.onload = function(){
   document.getElementById("menu").addEventListener("click", openMenu);
   document.getElementById("trans").addEventListener("click", closeMenu);
+  
+  const skills = [...document.querySelector("#skills").children];
+  let duration = getComputedStyle(skills[0]).animationDuration;
+  duration = duration.slice(0, -1);
+  skills.forEach((skill, index) => {
+    skill.style.animationDelay = `-${(duration / skills.length) * index}s`;
+  })
+  
   let menuContent = document.getElementById("menuContent");
   for (let i = 0; i < menuContent.children.length; i++){
     menuContent.children[i].addEventListener("click", moveTo);
