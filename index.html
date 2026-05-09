@@ -21,16 +21,16 @@
       <h1><span class="logo">&lt;/&gt;</span> Abdullah</h1>
 
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a class="scroll-to active-link" data-target="home">Home</a></li>
+        <li><a class="scroll-to" data-target="skills">Skills</a></li>
+        <li><a class="scroll-to" data-target="projects">Projects</a></li>
+        <li><a class="scroll-to" data-target="contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="hero container section">
+  <section id="home" class="hero container section">
     <div class="hero-text">
       <span class="badge"><span class="dot"></span>Frontend Developer</span>
 
@@ -45,11 +45,12 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View My Work <img src="./images/assets/right.svg" alt="" />
-        </a>
-        <a href="#contact" class="btn btn-outline">Contact Me
-          <img class="" src="./images/assets/mail.svg" alt="" />
-        </a>
+        <button class="hero-action-primary scroll-to btn btn-primary" data-target="projects">
+          <span>View My Work</span><img src="./images/assets/right.svg" alt="" />
+        </button>
+        <button class="scroll-to btn btn-outline" data-target="contact">
+          <span>Contact Me</span><img class="" src="./images/assets/mail.svg" alt="" />
+        </button>
       </div>
     </div>
 
@@ -203,7 +204,7 @@
     </p>
 
     <a href="mailto:muslimabdullah925@gmail.com" class="btn btn-primary">
-      Get In Touch
+      <span>Get In Touch</span>
       <img class="" src="./images/assets/mail.svg" alt="" />
     </a>
   </section>
@@ -214,8 +215,8 @@
       <p><span class="logo">&lt;/&gt;</span> Abdullah</p>
       <p>© 2026 Abdullah. All rights reserved.</p>
     </div>
-    <button type="button">
-      Back to top
+    <button class="scroll-to btn" data-target="home" type="button">
+      <span>Back to top</span>
       <img class="" src="./images/assets/up.svg" alt="" />
     </button>
   </footer>

@@ -2,24 +2,28 @@ let writing = true;
 let text = ["Hi, I'm Abdullah, a", "Frontend", "website developer."];
 let tempText = ["Hi, I'm Abdullah, a", "Frontend", "website developer."];
 window.onload = function(){
-  document.getElementById("menu").addEventListener("click", openMenu);
-  document.getElementById("trans").addEventListener("click", closeMenu);
+  // document.getElementById("menu").addEventListener("click", openMenu);
+  // document.getElementById("trans").addEventListener("click", closeMenu);
   
-  const skills = [...document.querySelector("#skills").children];
-  let duration = getComputedStyle(skills[0]).animationDuration;
-  duration = duration.slice(0, -1);
-  skills.forEach((skill, index) => {
-    skill.style.animationDelay = `-${(duration / skills.length) * index}s`;
+  // const skills = [...document.querySelector("#skills").children];
+  // let duration = getComputedStyle(skills[0]).animationDuration;
+  // duration = duration.slice(0, -1);
+  // skills.forEach((skill, index) => {
+  //   skill.style.animationDelay = `-${(duration / skills.length) * index}s`;
+  // })
+  
+  // let menuContent = document.getElementById("menuContent");
+  // for (let i = 0; i < menuContent.children.length; i++){
+  //   menuContent.children[i].addEventListener("click", moveTo);
+  // }
+  // document.getElementById("hire").addEventListener("click", openHire)
+  // document.getElementById("hire").addEventListener("mouseOver", openHire)
+  // document.getElementById("form").addEventListener("submit", sendMessage);
+  // setTimeout(typeWriter, 2000);
+  const scrolls = [...document.querySelectorAll(".scroll-to")];
+  scrolls.map( scroll => {
+    scroll.addEventListener("click", moveTo)
   })
-  
-  let menuContent = document.getElementById("menuContent");
-  for (let i = 0; i < menuContent.children.length; i++){
-    menuContent.children[i].addEventListener("click", moveTo);
-  }
-  document.getElementById("hire").addEventListener("click", openHire)
-  document.getElementById("hire").addEventListener("mouseOver", openHire)
-  document.getElementById("form").addEventListener("submit", sendMessage);
-  setTimeout(typeWriter, 2000);
 }
 function openMenu(){
   let menuContent = document.getElementById("menuContent");
@@ -34,63 +38,11 @@ function closeMenu(){
   trans.style.left = "101vw";
 }
 function moveTo(event){
-  if(event.target === event.currentTarget){
-    let id = event.currentTarget.textContent.toLowerCase();
-    console.log(id)
-    document.getElementById(id).scrollIntoView(true, {block: "start", behavior: "smooth"});
-    closeMenu();
-  }
+  let id = event.currentTarget.dataset.target;
+  document.getElementById(id).scrollIntoView({block: "start", behavior: "smooth"});
+  closeMenu();
 }
-function openHire(){
-  let hireOPtions = document.getElementById("hireOptions");
-  for (let i = 0; i < hireOPtions.children.length; i++){
-    hireOPtions.children[i].style.display = "flex";
-  }
-  try{
-    let hireP = document.getElementById("hireP");
-    hireP.style.textAlign = "left";
-    hireP.style.borderBottom = "2px solid #fff";
-    hireP.id = "nonSpreadingText";
-  }catch(e){}
-}
-function sendMessage(e){
-  e.preventDefault();
-  let form = document.getElementById("form");
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let message = document.getElementById("message").value;
-  let loader = document.getElementById("loader");
-  loader.style.display = "flex";
-  let feedBack =  document.getElementById("feedBack");
-  try{emailjs.send("service_l70zjla","template_sdn1cos",{name, message, email}).then(res => {
-      if(res.status === 200){
-        //successful
-        feedBack.children[0].textContent = "successful";
-        feedBack.style.display = "flex";
-        loader.style.display = "none";
-      }
-      else{
-        //failed
-        feedBack.children[0].textContent = "failed";
-        feedBack.style.display = "flex";
-      }
-      setTimeout(function(){
-        feedBack.style.display = "none";
-      }, 3000);
-    }).catch(error => {
-      feedBack.children[0].textContent = "failed. check your internet connection.";
-      feedBack.style.display = "flex";
-      setTimeout(function(){
-        feedBack.style.display = "none";
-      }, 3000);
-    });}catch(e){
-      feedBack.children[0].textContent = "failed. check your internet connection and reload.";
-      feedBack.style.display = "flex";
-      setTimeout(function(){
-        feedBack.style.display = "none";
-      }, 3000);
-    }
-}
+
 function typeWriter(){
   let target = document.getElementById("texts");
   if(writing){
